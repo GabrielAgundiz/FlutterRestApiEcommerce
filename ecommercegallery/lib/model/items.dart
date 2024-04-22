@@ -1,3 +1,8 @@
+import 'package:http/http.dart' as http;
+
+Future<http.Response> fetchAlbum() {
+  return http.get(Uri.parse('https://fakestoreapi.com/products/'));
+}
 class Item {
   final String title;
   final String category;
@@ -5,13 +10,14 @@ class Item {
   final double rating;
   final double price;
 
-  Item({
+  const Item({
     required this.title,
     required this.category,
     required this.imageUrl,
     required this.rating,
     required this.price,
   });
+  
 }
 
 final List<Item> items = [

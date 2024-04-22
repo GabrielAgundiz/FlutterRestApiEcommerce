@@ -65,9 +65,9 @@ class ItemCard extends StatelessWidget {
                         const SizedBox(
                           width: 5,
                         ),
-                        Text(
-                          item.rating.toString(),
-                          style: const TextStyle(
+                        const Text(
+                          "4.9",
+                          style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
                           ),
