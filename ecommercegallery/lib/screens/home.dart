@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<int> _defaultItems = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,20 +31,20 @@ class _HomePageState extends State<HomePage> {
                 height: 8,
               ),
               Expanded(
-                  child: FutureBuilder<Item>(
-                future: ApiClient().getItem(6),
+                  child: FutureBuilder<List<Item>>(
+                future: ApiClient().getItems(_defaultItems),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(child: CircularProgressIndicator());
                   }
-                  Item? item = snapshot.data;
+                  List<Item>? item = snapshot.data;
                   if (item == null) {
                     return const Text("Error al obtener datos");
                   } else {
                     return ListView.builder(
-                        itemCount: 1,
+                        itemCount: item.length,
                         itemBuilder: (context, index) {
-                          return ItemCard(item: item);
+                          return ItemCard(item: item[index]);
                         });
                   }
                 },
