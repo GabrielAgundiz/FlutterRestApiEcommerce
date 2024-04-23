@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(
                   child: FutureBuilder<Item>(
-                future: ApiClient().getItem(),
+                future: ApiClient().getItem(6),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(child: CircularProgressIndicator());
