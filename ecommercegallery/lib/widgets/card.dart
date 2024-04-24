@@ -65,8 +65,8 @@ class ItemCard extends StatelessWidget {
                         const SizedBox(
                           width: 5,
                         ),
-                        const Text(
-                          "4.9",
+                        Text(
+                          '${item.rate}',
                           style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
@@ -76,6 +76,7 @@ class ItemCard extends StatelessWidget {
                           width: 30,
                         ),
                         Text(
+                          //'\$${item.price.toStringAsFixed(2)}',
                           '\$${item.price.toStringAsFixed(2)}',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
