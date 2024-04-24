@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
   final Item item;
-
   const ItemCard({Key? key, required this.item}) : super(key: key);
 
   @override
@@ -67,7 +66,7 @@ class ItemCard extends StatelessWidget {
                         ),
                         Text(
                           '${item.rate}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
                           ),
@@ -75,8 +74,7 @@ class ItemCard extends StatelessWidget {
                         const SizedBox(
                           width: 30,
                         ),
-                        Text(
-                          //'\$${item.price.toStringAsFixed(2)}',
+                        Text( 
                           '\$${item.price.toStringAsFixed(2)}',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,

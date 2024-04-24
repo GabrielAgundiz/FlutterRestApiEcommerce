@@ -1,8 +1,3 @@
-/*
-Future<http.Response> fetchAlbum() {
-  return http.get(Uri.parse('https://fakestoreapi.com/products/'));
-}*/
-
 class Item {
   final int id;
   final String title;
@@ -42,35 +37,3 @@ class Item {
     };
   }
 }
-
-/*final List<Item> items = [
-  Item(
-    title: 'Essential Men\'s T-shirt New Colection',
-    category: 'Shirt',
-    imageUrl: 'https://ss223.liverpool.com.mx/xl/1119270109.jpg',
-    rating: 4.9,
-    price: 240.0,
-  ),
-  Item(
-    title: 'Essential Men\'s T-shirt New Colection',
-    category: 'Shirt',
-    imageUrl: 'https://ss223.liverpool.com.mx/xl/1119270109.jpg',
-    rating: 4.9,
-    price: 240.0,
-  ),
-  Item(
-    title: 'Essential Men\'s T-shirt New Colection',
-    category: 'Shirt',
-    imageUrl: 'https://ss223.liverpool.com.mx/xl/1119270109.jpg',
-    rating: 4.9,
-    price: 240.0,
-  ),
-];
-Item(
-      id: json['id'],
-      title: json['title'],
-      category: json['category'],
-      imageUrl: json['image'],
-      rating: json['rating'],
-      price: json['price'],
-    );*/

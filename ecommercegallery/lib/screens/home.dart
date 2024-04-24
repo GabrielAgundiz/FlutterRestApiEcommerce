@@ -2,7 +2,6 @@ import 'package:ecommercegallery/apli_client.dart';
 import 'package:ecommercegallery/model/items.dart';
 import 'package:ecommercegallery/widgets/card.dart';
 import 'package:flutter/material.dart';
-//import 'dart:isolate';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -70,17 +69,7 @@ class _HomePageState extends State<HomePage> {
                         });
                   }
                 },
-              )
-
-                  /*GridView.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 20,
-                  shrinkWrap: true,
-                  childAspectRatio: 190 / 330,
-                  children: items.map((Item) => ItemCard(item: Item)).toList(),
-                ),*/
-                  ),
+              )),
             ],
           ),
         ),
