@@ -2,6 +2,7 @@ import 'package:ecommercegallery/apli_client.dart';
 import 'package:ecommercegallery/model/items.dart';
 import 'package:ecommercegallery/widgets/card.dart';
 import 'package:flutter/material.dart';
+//import 'dart:isolate';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +12,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<int> _defaultItems = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  List<int> _defaultItems = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
