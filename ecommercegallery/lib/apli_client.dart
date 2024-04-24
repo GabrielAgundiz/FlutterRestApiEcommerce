@@ -18,7 +18,7 @@ class ApiClient {
       throw Exception("Error al obtener el item");
     }
   }
-
+ 
   Future<List<Item>> getItems(List<int> ids) async {
     List<Item> items = [];
     for (int id in ids) {
