@@ -17,7 +17,7 @@ class Item {
     required this.rating,
     required this.price,
   });
-  
+   
 }
 
 final List<Item> items = [
