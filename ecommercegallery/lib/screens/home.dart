@@ -1,5 +1,6 @@
 import 'package:ecommercegallery/apli_client.dart';
 import 'package:ecommercegallery/model/items.dart';
+import 'package:ecommercegallery/screens/cart.dart';
 import 'package:ecommercegallery/widgets/card.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,25 @@ class _HomePageState extends State<HomePage> {
           'Ecommerce Gallery',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              children: [
+                Text("4"),
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CartPage()),
+                      );
+                    },
+                    icon: const Icon(Icons.shopping_cart))
+              ],
+            ),
+          )
+        ],
       ),
       body: SafeArea(
         child: Padding(

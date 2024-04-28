@@ -8,7 +8,7 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.only(left: 5, right: 5, bottom: 20),
       child: Container(
         color: Colors.white,
         height: 330,
@@ -55,37 +55,49 @@ class ItemCard extends StatelessWidget {
                     const SizedBox(
                       height: 6,
                     ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.star,
-                          color: Colors.orange,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          '${item.rate}',
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(children: [const Icon(
+                            Icons.star,
+                            color: Colors.orange,
                           ),
-                        ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Text( 
-                          '\$${item.price.toStringAsFixed(2)}',
-                          style: TextStyle(
+                             
+                          Text(
+                            '${item.rate}',
+                            style: const TextStyle(
+                              color: Colors.grey,
                               fontWeight: FontWeight.bold,
-                              fontSize: 19,
-                              color: Colors.grey[600]),
-                        ),
-                      ],
+                            ),
+                          ),],),
+                          
+                                         
+                          Text(
+                            '\$${item.price.toStringAsFixed(2)}',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 19,
+                                color: Colors.grey[600]),
+                          ),
+                                        TextButton(
+                                      
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: Colors.white,
+                                        backgroundColor: Colors.black,
+                                        
+                                      ),
+                                      onPressed: () {},
+                                      child: Text('Add to Cart'),
+                                    ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
+
             ],
           ),
         ),
