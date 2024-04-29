@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:ecommercegallery/model/items.dart';
 import 'package:ecommercegallery/state.dart';
 import 'package:ecommercegallery/widgets/cart_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 
 import '../apli_client.dart';
 
@@ -107,13 +110,18 @@ class carView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.black,
                             ),
-                            child: const Center(
-                              child: Text(
-                                "Buy now",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
+                            child: Center(
+                              child: TextButton(
+                                onPressed: () {
+                                  enviarCorreo();
+                                },
+                                child: Text(
+                                  "Buy now",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ),
@@ -129,5 +137,34 @@ class carView extends StatelessWidget {
         ),
       );
     });
+  }
+
+  void enviarCorreo() async {
+    var data = {
+      'service_id': 'service_w1mggaa',
+      'template_id': 'template_1aembqh',
+      'user_id': 'gNoK7HvR10uvh-Six',
+      'private_key': 'sj7dIR1vGoKkXYgU01N9A',
+      'template_params': {
+        'user_name': 'Americo',
+        'user_email': 'agzz2003@gmail.com',
+        'user_message': '30',
+      }
+    };
+
+    var url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+    var response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 200) {
+      print('Your mail is sent!');
+    } else {
+      print('Oops... ' + response.body);
+    }
   }
 }
