@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 children: [
-                  Text("4"),
+                  Text(shoppingCarState.itemIds.length.toString()),
                   IconButton(
                       onPressed: () {
                         Navigator.push(
