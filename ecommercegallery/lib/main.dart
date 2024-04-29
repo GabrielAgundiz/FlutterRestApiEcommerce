@@ -12,16 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      //estado inicial de la lista es vacia
-      home: BlocProvider(
-        create: (_) => ShoppingCarBloc(shoppingCarState([])),
-        child: const HomePage(),
+    return BlocProvider(
+      create: (_) => ShoppingCarBloc(ShoppingCarState([])),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        //estado inicial de la lista es vacia
+        home: const HomePage(),
       ),
     );
   }

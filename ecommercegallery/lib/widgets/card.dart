@@ -1,8 +1,11 @@
 import 'package:ecommercegallery/model/items.dart';
+import 'package:ecommercegallery/state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemCard extends StatelessWidget {
   final Item item;
+
   const ItemCard({Key? key, required this.item}) : super(key: key);
 
   @override
@@ -60,20 +63,21 @@ class ItemCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(children: [const Icon(
-                            Icons.star,
-                            color: Colors.orange,
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                color: Colors.orange,
+                              ),
+                              Text(
+                                '${item.rate}',
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
-                             
-                          Text(
-                            '${item.rate}',
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),],),
-                          
-                                         
                           Text(
                             '\$${item.price.toStringAsFixed(2)}',
                             style: TextStyle(
@@ -81,27 +85,65 @@ class ItemCard extends StatelessWidget {
                                 fontSize: 19,
                                 color: Colors.grey[600]),
                           ),
-                                        TextButton(
-                                      
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: Colors.white,
-                                        backgroundColor: Colors.black,
-                                        
-                                      ),
-                                      onPressed: () {},
-                                      child: Text('Add to Cart'),
-                                    ),
+                          ShoppingActionsWidget(item.id),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class ShoppingActionsWidget extends StatelessWidget {
+  final int idItem;
+
+  const ShoppingActionsWidget(this.idItem, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ShoppingCarBloc, ShoppingCarState>(
+        builder: (context, shoppingCarState) {
+      if (shoppingCarState.itemIds.contains(idItem)) {
+        return TextButton(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.black,
+          ),
+          onPressed: () {
+            _removeFromCar(context, idItem);
+          },
+          child: Text('Quitar del Carrito'),
+        );
+      } else {
+        return TextButton(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.black,
+          ),
+          onPressed: () {
+            _addToCar(context, idItem);
+          },
+          child: Text('Agregar al Carrito'),
+        );
+      }
+    });
+  }
+
+  void _addToCar(BuildContext context, int idItem) {
+    var shoppingCarBloc =
+        context.read<ShoppingCarBloc>(); //que es lo que quiero leer
+    shoppingCarBloc.add(AddItemToCar(idItem));
+  }
+
+  void _removeFromCar(BuildContext context, int idItem) {
+    var shoppingCarBloc =
+        context.read<ShoppingCarBloc>(); //que es lo que quiero leer
+    shoppingCarBloc.add(RemoveItemFromCar(idItem));
   }
 }
