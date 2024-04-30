@@ -129,7 +129,7 @@ class ShoppingActionsWidget extends StatelessWidget {
           onPressed: () {
             _addToCar(context, idItem);
           },
-          child: Text('Agregar al Carrito'),
+          child: const Text('Agregar al Carrito'),
         );
       }
     });
