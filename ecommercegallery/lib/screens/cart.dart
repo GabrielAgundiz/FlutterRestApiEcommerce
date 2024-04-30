@@ -28,7 +28,7 @@ class _CartPageState extends State<CartPage> {
             appBar: AppBar(
               title: const Text("My Cart"),
             ),
-            body: Center(
+            body: const Center(
               child: Text("Aun no hay articulos en el carrito"),
             ));
       }
@@ -60,7 +60,7 @@ class carView extends StatelessWidget {
                   future: ApiClient().getItems(itemIds),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
                     List<Item>? items = snapshot.data;
                     if (items == null) {
@@ -115,7 +115,7 @@ class carView extends StatelessWidget {
                                 onPressed: () {
                                   enviarCorreo();
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Buy now",
                                   style: TextStyle(
                                     fontSize: 20,

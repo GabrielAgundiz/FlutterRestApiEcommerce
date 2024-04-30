@@ -118,7 +118,7 @@ class ShoppingActionsWidget extends StatelessWidget {
           onPressed: () {
             _removeFromCar(context, idItem);
           },
-          child: Text('Quitar del Carrito'),
+          child: const Text('Quitar del Carrito'),
         );
       } else {
         return TextButton(

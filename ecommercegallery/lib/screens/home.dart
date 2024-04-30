@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                   future: ApiClient().getItems(_defaultItems),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
                     List<Item>? item = snapshot.data;
                     if (item == null) {
