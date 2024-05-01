@@ -1,11 +1,11 @@
-import 'dart:convert';
-
 import 'package:ecommercegallery/model/items.dart';
 import 'package:ecommercegallery/state.dart';
 import 'package:ecommercegallery/widgets/cart_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server/hotmail.dart';
 
 import '../apli_client.dart';
 
@@ -38,6 +38,10 @@ class _CartPageState extends State<CartPage> {
           ),
           body: carView(shoppingCarState.itemIds));
     });
+  }
+
+  void sendMail(double costo) {
+    EmailSender.sendMailFromOutlook(costo);
   }
 }
 
@@ -113,7 +117,7 @@ class carView extends StatelessWidget {
                             child: Center(
                               child: TextButton(
                                 onPressed: () {
-                                  enviarCorreo();
+                                  _CartPageState().sendMail(costo);
                                 },
                                 child: const Text(
                                   "Buy now",
@@ -138,33 +142,28 @@ class carView extends StatelessWidget {
       );
     });
   }
+}
 
-  void enviarCorreo() async {
-    var data = {
-      'service_id': 'service_w1mggaa',
-      'template_id': 'template_1aembqh',
-      'user_id': 'gNoK7HvR10uvh-Six',
-      'private_key': 'sj7dIR1vGoKkXYgU01N9A',
-      'template_params': {
-        'user_name': 'Americo',
-        'user_email': 'agzz2003@gmail.com',
-        'user_message': '30',
+class EmailSender {
+  static final outlookSmtp =
+      hotmail(dotenv.env["OUTLOOK_EMAIL"]!, dotenv.env["OUTLOOK_PASSWORD"]!);
+
+  static Future<void> sendMailFromOutlook(double costo) async {
+    final message = Message()
+      ..from = Address(dotenv.env["OUTLOOK_EMAIL"]!, 'Confirmation Bot')
+      ..recipients.add('agzz2003@gmail.com')
+      ..subject = 'Recibo de pago Ecommers'
+      ..html =
+          '<body style="text-align: center; font-family: Tahoma, Geneva, Verdana, sans-serif;"> <div style="margin:auto; border-radius: 10px; width: 300px; padding: 10px; box-shadow: 1px 1px 1px 1px rgb(174, 174, 174);"> <h2>Hola, el costo de su pedido es el siguiente</h2> <p>\$$costo</p></div></body>';
+
+    try {
+      final sendReport = await send(message, outlookSmtp);
+      print('Message sent: ' + sendReport.toString());
+    } on MailerException catch (e) {
+      print('Message not sent.');
+      for (var p in e.problems) {
+        print('Problem: ${p.code}: ${p.msg}');
       }
-    };
-
-    var url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
-    var response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(data),
-    );
-
-    if (response.statusCode == 200) {
-      print('Your mail is sent!');
-    } else {
-      print('Oops... ' + response.body);
     }
   }
 }
