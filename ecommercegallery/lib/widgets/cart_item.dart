@@ -9,7 +9,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
-      height: 120,
+      height: 160,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           color: const Color.fromARGB(255, 248, 248, 248),
