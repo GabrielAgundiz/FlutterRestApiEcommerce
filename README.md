@@ -4,7 +4,7 @@ OUTLOOK_EMAIL=
 OUTLOOK_PASSWORD=
 
 
-##Hallazgos y Aprendizajes
+## Hallazgos y Aprendizajes
 <p>El desarrollo de una galería de tipo "e-commerce" en Flutter fue una experiencia enriquecedora. Flutter proporcionó una amplia gama de widgets y herramientas que facilitaron la creación de una interfaz de usuario atractiva y receptiva para la galería de productos. La versatilidad de Flutter permitió la personalización de los componentes visuales, como tarjetas de productos y animaciones, mejorando la experiencia del usuario. Sin embargo, organizar y estructurar los datos de los productos recibidos desde la API REST fue un desafío, ya que fue necesario diseñar una estructura de datos adecuada para almacenar y manipular eficientemente la información de los productos.</p>
 
 <p>La implementación de un carrito de compras mejoró significativamente la funcionalidad del sistema de "e-commerce". Los usuarios pudieron seleccionar múltiples productos y visualizar el total acumulado antes de realizar la compra. No obstante, la gestión del estado del carrito de compras y la actualización de la interfaz de usuario en respuesta a los cambios en el carrito representaron un desafío. Fue necesario implementar mecanismos de gestión de estado adecuados para garantizar la coherencia y la actualización en tiempo real de la información del carrito.</p>
